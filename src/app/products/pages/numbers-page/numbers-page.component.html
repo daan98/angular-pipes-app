@@ -1,0 +1,26 @@
+<p-panel [header]="'Numerics Pipes'" class="py-2">
+    <p class="pt-2">
+        Pipes includes in Angular - Usually in Common Module
+    </p>
+</p-panel>
+
+<div class="grid mt-2">
+    <div class="col-12 md:col-4">
+        <p-card header="decimal">
+            {{ numberAmount | number: '1.4-4' }}
+        </p-card>
+    </div>
+    
+    <div class="col-12 md:col-4">
+        <p-card header="currency">
+            {{ currencyAmount  | currency:'EUR':'symbol-narrow':'1.4-4' }}
+        </p-card>
+    </div>
+    
+    <div class="col-12 md:col-4">
+        <p-card header="percent" subheader="">
+            {{ percentAmount | percent: '1.2-4' }}
+        </p-card>
+    </div>
+    
+</div>

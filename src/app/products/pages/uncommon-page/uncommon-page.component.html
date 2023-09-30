@@ -1,0 +1,82 @@
+<p-panel [header]="'Uncommon Pipes'" class="py-2">
+    <p class="pt-2">
+        Pipes includes in Angular - Usually in Common Module
+    </p>
+</p-panel>
+
+<div class="grid mt-2">
+    <div class="col-12 md:col-6">
+        <p-fieldset legend="i18nSelect Pipe" [toggleable]="true">
+            <p>{{ name | titlecase }} is the best player of the competition {{ gender | i18nSelect:invitationMap }} has score 35 goals</p>
+
+            <p-button
+                label="Change Person"
+                (onClick)="gender === 'male'? changeClient('alejandra', 'female') : changeClient('daniel', 'male')"
+            ></p-button>
+        </p-fieldset>
+    </div>
+    
+    <div class="col-12 md:col-6">
+        <p-fieldset legend="i18nPlural Pipe" [toggleable]="true">
+            <p>
+                At the moment {{ clients.length | i18nPlural:clientsMap }}
+            </p>
+
+            <p-button
+                label="Delete Client"
+                (onClick)="deleteClient()"
+                [disabled]="clients.length === 0 ? true : false"
+            ></p-button>
+        </p-fieldset>
+    </div>
+    
+    <div class="col-12 md:col-6">
+        <p-fieldset [legend]="'Slice Pipe'" [toggleable]="true">
+            <ol>
+                <li *ngFor="let roleTech of rolesTechnologies | slice:1:(rolesTechnologies.length - 1)" class="my-2">
+                    <Table></Table>echnology: {{ roleTech.technology }} - Role: {{ roleTech.role }}
+                </li>
+            </ol>
+        </p-fieldset>
+    </div>
+    
+    <div class="col-12 md:col-6">
+        <p-fieldset [legend]="'JSON Pipe'" [toggleable]="true">
+            <p>Without pipe</p>
+            <pre>{{ jsonData }}</pre>
+            <p>With pipe</p>
+            <pre>{{ jsonData | json }}</pre>
+        </p-fieldset>
+    </div>
+    
+    <div class="col-12 md:col-6">
+        <p-fieldset [legend]="'KeyValue Pipe'" [toggleable]="true">
+            <p>Object</p>
+            <ol>
+                <li *ngFor="let item of jsonData | keyvalue">
+                    {{ item.key }}: {{ item.value }}
+                </li>
+            </ol>
+            <p>Map</p>
+            <ol>
+                <li *ngFor="let item of map | keyvalue">
+                    {{ item.key }}: {{ item.value }}
+                </li>
+            </ol>
+        </p-fieldset>
+    </div>
+    
+    <div class="col-12 md:col-6">
+        <p-fieldset [legend]="'Async Pipe'" [toggleable]="true">
+            <pre>promise | async</pre>
+
+            <p-button
+                [label]="arrived ? 'Reset' : 'Resolve'"
+                (onClick)="handleOnClickPromise()"
+            ></p-button>
+
+            <p>Wait for it... {{ greeting | async }}</p>
+        </p-fieldset>
+    </div>
+    
+</div>
